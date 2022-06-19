@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class Sample002WriteAndReadString {
 
@@ -14,25 +15,30 @@ public class Sample002WriteAndReadString {
                 FileInputStream fis = new FileInputStream(file);
         ) {
             printFilePath(file);
-            writeInteger(fos, 0, 3);
-            readInteger(fis, 3);
+            String content = "Hello World";
+            int len = writeString(fos, content);
+            readString(fis, len);
         } catch (Exception e) {
             System.out.println("e = " + e);
         }
     }
 
-    private static void writeInteger(FileOutputStream fos, int start, int size) throws IOException {
-        for(int i=0; i< size; i++){
-            int a = start + i;
-            System.out.println("fos.write() = " + a);
-            fos.write(a);
-        }
+    private static int writeString(FileOutputStream fos, String content) throws IOException {
+        System.out.println("writeString = " + content);
+        byte[] bytes = content.getBytes(StandardCharsets.UTF_8);
+        fos.write(bytes);
         fos.flush();
+        return bytes.length;
     }
 
-    private static void readInteger(FileInputStream fis, int size) throws IOException {
-        for(int i=0; i< size; i++){
-            System.out.println("fis.read() = " + fis.read());
+    private static void readString(FileInputStream fis, int len) throws IOException {
+        byte[] bytes = new byte[len];
+        int readLen = fis.read(bytes);
+        if (readLen != -1){
+            String content = new String(bytes);
+            System.out.println("readString = " + content);
+        }else{
+            System.out.println("readString Error");
         }
     }
 
