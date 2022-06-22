@@ -17,9 +17,8 @@ import java.nio.charset.StandardCharsets;
  * - 문자 스트림 : *Reader, *Writer
  *
  * 스트림의 구분 3
- * - 기반 스트림 : InputStream의 구현체 @See
+ * - 기반 스트림 : InputStream의 구현체
  * - 보조 스트림 : FilterInputStream의 구현체
- *
  *
  */
 public class Sample006InputStreamAndFilterInputStream {
@@ -64,13 +63,13 @@ public class Sample006InputStreamAndFilterInputStream {
 
         sw.start();
         BufferedOutputStream bos = new BufferedOutputStream(fos);
-        System.out.println("\nwriteWithByteStream");
+        System.out.println("\nwriteWithBufferedByteStream");
         writeWithBufferedByteStream(s, bos, time);
         System.out.println("elapsed time = " + sw.stop() + "ms");
 
         sw.start();
         BufferedInputStream bis = new BufferedInputStream(fis);
-        System.out.println("\nreadWithByteStream");
+        System.out.println("\nreadWithBufferedByteStream");
         readWithBufferedByteStream(s, bis, time);
         System.out.println("elapsed time = " + sw.stop() + "ms");
 
