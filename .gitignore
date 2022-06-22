@@ -1,6 +1,6 @@
 # lucky-developer
-io.lucky.*
-
+io.lucky.common/target
+io.lucky.common/io.lucky.*.txt
 # JAVA
 
 ## Compiled class file
